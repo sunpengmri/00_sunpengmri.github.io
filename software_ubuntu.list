@@ -25,3 +25,14 @@
 4. Nvidia Clara
 
 5. pytorch: in conda and monai
+
+6. matlab: opt/MATLAB
+7. anaconda: 
+			pytorch
+			monai
+			R: install.packages("devtools")
+			rstudio: should be started in terminal
+8. pycharm
+
+### mri
+9. 

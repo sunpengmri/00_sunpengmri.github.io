@@ -17,3 +17,8 @@
   a:修改DNS，系统偏好设置->网络->高级->DNS-> + -> 114.114.114.114 and 8.8.8.8
   b:修改hosts：sudo vim/etc/hosts -> www.ipaddress.com ->github.com and github.global.ssl.fastly.net
   c:刷新DNS：sudo killall -HUP mDNSResponder
+
+
+5. ssh
+   scp -r mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
+   scp -r localfile.txt mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
