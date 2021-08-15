@@ -21,4 +21,4 @@
 
 5. ssh
    scp -r mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
-   scp -r localfile.txt mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
+   scp -r localfile.txt mri@192.168.3.6:/home/mri/Documents 
