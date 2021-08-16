@@ -1,0 +1,14 @@
+1. vm and hyper-v
+  bcdedit /set hypervisorlaunchtype off 
+  bcdedit /set hypervisorlaunchtype auto
+
+2. 硬盘无法弹出
+  a:打开cmd
+  b：diskpart
+  c: select disk 2
+  d：offline disk
+  e：online disk
+
+3. ssh
+   scp -r mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
+   scp -r localfile.txt mri@192.168.3.6:/home/mri/Documents 
