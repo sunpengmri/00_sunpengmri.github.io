@@ -20,6 +20,8 @@
     git config --global user.name "sunpengmri"
     git config --global user.email "sunpengwipm@whu.edu.cn"
     登录github账号，依次点击下图中加红框菜单：  setting-SSH-添加Key 
+    修改当前仓库的默认url为ssh的url：
+    url = git@github.com:sunpengmri/sunpengmri.github.io.git
 
 
 11. github 访问技巧(win)
