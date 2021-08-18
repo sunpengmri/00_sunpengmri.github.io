@@ -1,0 +1,13 @@
+1. install package: 
+	a: install.packages('dplyr');install.packages('tidyr');install.packages('vioplot'): corrplot; gmodels; matrixStats
+
+2. biocLite
+	source("http://bioconductor.org/biocLite.R")
+	options(BioC_mirror="http://mirrors.ustc.edu.cn/bioc/")
+	BiocManager::install("包名")
+3. update.packages()
+
+4. R CMD INSTALL --configure-vars='INCLUDE_DIR=/usr/include LIB_DIR=/usr/lib/x86_64-linux-gnu/pkgconfig' curl.tar.gz
+   R CMD INSTALL --configure-vars='ICUDT_DIR=/home/mri/Documents/GitHub/17_r/package' /home/mri/Documents/GitHub/17_r/package/
+
+5. conda config --show channels

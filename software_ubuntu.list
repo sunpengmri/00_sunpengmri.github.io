@@ -32,7 +32,18 @@
 			monai
 			R: install.packages("devtools")
 			rstudio: should be started in terminal
+			fae
+			matrix3
 8. pycharm
 
 ### mri
-9. 
+9. dpabi: should install docker and install the image
+10. fsl
+11. afni
+12. slicer3D
+13. MricronGL
+14. lcmodel :    
+	a. cd $HOME/.lcmodel
+	b. ./lcmgui
+15. ants: not finishing
+16. qsiprep-docker
