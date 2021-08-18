@@ -1,1 +1,0 @@
-1. vs code 中启动 notebook: ctrl + shift + p, notebook, 新建notebook
