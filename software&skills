@@ -22,3 +22,10 @@
 5. ssh
    scp -r mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
    scp -r localfile.txt mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
+
+6. language support
+    sudo apt install $(check-language-support)
+
+7. unrar .rar file
+    解压： rar x file.rar
+    压缩： rar a file.rar DirName
