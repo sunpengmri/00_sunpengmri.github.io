@@ -1,4 +1,6 @@
 1. docker: sudo apt  install docker.io
+	docker ps 
+	docker stop
 
 2. change dns and host to access nvidia
 	
@@ -41,7 +43,7 @@
 10. fsl
 11. afni
 12. slicer3D
-13. MricronGL
+13. MricronGL: MRIcroGL
 14. lcmodel :    
 	a. cd $HOME/.lcmodel
 	b. ./lcmgui
