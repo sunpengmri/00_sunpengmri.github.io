@@ -53,8 +53,9 @@
 			fae
 			matrix3
 		R4:
-		quantiphyse:
+		quantiphyse:(AttributeError: module 'PySide2.QtGui' has no attribute 'QDialog')
 			quantiphyse
+			sudo apt install libqt4-dev qt4-qmake cmake python-dev python-setuptools
 
 
 8. pycharm
@@ -71,3 +72,13 @@
 15. ants: not finishing
 16. qsiprep-docker
 17. quantiphyse
+
+
+30. qt4
+	sudo add-apt-repository ppa:rock-core/qt4
+	sudo apt update
+	sudo apt install PACKAGE_NAME
+
+	Uninstall Qt4:
+	sudo add-apt-repository --remove ppa:rock-core/qt4
+	sudo apt remove --autoremove libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4*

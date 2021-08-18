@@ -7,3 +7,6 @@
     conda create -n quantiphyse python=3.7
     conda activate auantiphyse
     pip install quantiphyse
+
+3. conda remove -n quantiphyse --all
+    conda info --envs
