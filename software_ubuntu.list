@@ -1,4 +1,6 @@
 1. docker: sudo apt  install docker.io
+	docker ps 
+	docker stop
 
 2. change dns and host to access nvidia
 	
@@ -10,17 +12,32 @@
 	185.199.108.153 nvidia.github.io
 	sudo systemd-resolve --flush-caches
 
-3. CUDA 11.2.1 and CUDNN
+3. nvidia-driver, CUDA 11.2.1 and CUDNN
 
-	wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
-	sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-	wget https://developer.download.nvidia.com/compute/cuda/11.2.1/local_installers/cuda-repo-ubuntu2004-11-2-local_11.2.1-460.32.03-1_amd64.deb
-	sudo dpkg -i cuda-repo-ubuntu2004-11-2-local_11.2.1-460.32.03-1_amd64.deb
-	sudo apt-key add /var/cuda-repo-ubuntu2004-11-2-local/7fa2af80.pub
-	sudo apt-get update
-	sudo apt-get -y install cuda
+	a. install nvidia-driver-460
+		# ubuntu-drivers devices（查看显卡）
+		# sudo install nvidia-driver-460
+	b. install cuda-11.2.1
+		wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+		sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+		wget https://developer.download.nvidia.com/compute/cuda/11.2.1/local_installers/cuda-repo-ubuntu2004-11-2-local_11.2.1-460.32.03-1_amd64.deb
+		sudo dpkg -i cuda-repo-ubuntu2004-11-2-local_11.2.1-460.32.03-1_amd64.deb
+		sudo apt-key add /var/cuda-repo-ubuntu2004-11-2-local/7fa2af80.pub
+		sudo apt-get update
+		sudo apt-get -y install cuda
 
-	https://developer.nvidia.com/cudnn
+		/usr/local/ 路径下有 cuda 和 cuda-11.2，注意 cuda 是软链接，指向 cuda-11.2
+		sudo vim ~/.bashrc
+		# cuda
+		export PATH=/usr/local/cuda/bin:$PATH
+		export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+	c. CUDNN
+		https://developer.nvidia.com/cudnn
+		tar zxf cudnn-11.2-linux-x64-v8.1.0.77.tgz
+		sudo cp cuda/include/cudnn.h /usr/local/cuda/include/
+		sudo cp cuda/include/cudnn_version.h /usr/local/cuda/include/
+		sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64/
 
 4. Nvidia Clara
 
@@ -28,12 +45,19 @@
 
 6. matlab: opt/MATLAB
 7. anaconda: 
+		base:
 			pytorch
 			monai
 			R: install.packages("devtools")
 			rstudio: should be started in terminal
 			fae
 			matrix3
+		R4:
+		quantiphyse:(AttributeError: module 'PySide2.QtGui' has no attribute 'QDialog')
+			quantiphyse
+			sudo apt install libqt4-dev qt4-qmake cmake python-dev python-setuptools
+
+
 8. pycharm
 
 ### mri
@@ -41,9 +65,20 @@
 10. fsl
 11. afni
 12. slicer3D
-13. MricronGL
+13. MricronGL: MRIcroGL
 14. lcmodel :    
 	a. cd $HOME/.lcmodel
 	b. ./lcmgui
 15. ants: not finishing
 16. qsiprep-docker
+17. quantiphyse
+
+
+30. qt4
+	sudo add-apt-repository ppa:rock-core/qt4
+	sudo apt update
+	sudo apt install PACKAGE_NAME
+
+	Uninstall Qt4:
+	sudo add-apt-repository --remove ppa:rock-core/qt4
+	sudo apt remove --autoremove libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4*
