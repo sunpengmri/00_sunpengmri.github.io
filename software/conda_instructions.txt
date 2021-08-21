@@ -1,7 +1,7 @@
 1. env management:
     base：python3.8
     R4: 
-    quantiphyse: python3.7
+    quantiphyse: python3.7 not installed
     
 2. create env and install packages
     conda create -n quantiphyse python=3.7
