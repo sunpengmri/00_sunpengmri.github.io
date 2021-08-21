@@ -12,3 +12,7 @@
 3. ssh
    scp -r mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
    scp -r localfile.txt mri@192.168.3.6:/home/mri/Documents 
+
+4. device guard
+  a、在开始此单上单击右键，选择【运行】，键入gpedit.msc ，然后单击确定。将打开本地组策略编辑器；
+  b、在组策略左侧依次展开：本地计算机策略>计算机配置>管理模板 > 系统>Device Guard>打开基于虚拟化的安全，在弹出的窗口中选择【禁用】；
