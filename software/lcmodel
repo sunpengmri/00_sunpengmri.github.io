@@ -1,0 +1,6 @@
+1. how to pass the key to lcmodel: Stephen Provencher is no longer available. LCModel is now free software. You can use it by entering (the first time only) the command:
+  touch  $HOME/.lcmodel/license 
+    and for each analysis the following in Figure 7.7 of the User's Manual:
+        key = 210387309 input to control parameters
+    Optionally, you can also enter:
+        owner = 'your group and laboratory name'
