@@ -5,3 +5,11 @@
 5. ScreenToGIF
 6. Geek Uninstaller
 7. QuickLook
+
+
+8. anaconda:
+   ## env: 
+   		### base for mri
+   			#### dipy: nibabel dipy fury cvxpy
+   		### DL for deeplearning
+   			pytorch keras tensorflow R kaggle
