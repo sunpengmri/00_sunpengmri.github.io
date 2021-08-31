@@ -1,6 +1,16 @@
 1. vm and hyper-v
   bcdedit /set hypervisorlaunchtype off 
   bcdedit /set hypervisorlaunchtype auto
+  device guard： use the offcial tool to handle this 
+    C:\Users\lenovo\Documents\GitHub\15_system\dgreadiness_v3.6
+    C:\Users\lenovo\Documents\GitHub\15_system\LeoMoonCPUV204
+    a、在开始此单上单击右键，选择【运行】，键入gpedit.msc ，然后单击确定。将打开本地组策略编辑器；
+    b、在组策略左侧依次展开：本地计算机策略>计算机配置>管理模板 > 系统>Device Guard>打开基于虚拟化的安全，在弹出的窗口中选择【禁用】；
+  20210830： a terrible two-day debug（only Hyper-V features needed）
+            1) switch to windows container
+            2）troubleshooting，clean hyperv and wsl data
+
+
 
 2. 硬盘无法弹出
   a:打开cmd
@@ -13,6 +23,3 @@
    scp -r mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
    scp -r localfile.txt mri@192.168.3.6:/home/mri/Documents 
 
-4. device guard
-  a、在开始此单上单击右键，选择【运行】，键入gpedit.msc ，然后单击确定。将打开本地组策略编辑器；
-  b、在组策略左侧依次展开：本地计算机策略>计算机配置>管理模板 > 系统>Device Guard>打开基于虚拟化的安全，在弹出的窗口中选择【禁用】；
