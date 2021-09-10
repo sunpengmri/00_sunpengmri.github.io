@@ -6,11 +6,16 @@
         owner = 'your group and laboratory name'
 
 2. SDAT files: must have the extension .SDAT or .sdat. The corresponding SPAR file must be in the same directory with the identical filename, except with the extension .SPAR or .spar, respectively.
-3. With SDAT CSI files: Do not do ECC. (Your menus will now be different.)
+
+
+3. ECC 
+  With SDAT CSI files: Do not do ECC. (Your menus will now be different.)
     • Prior to acquisition, be sure to change the echo acquisition mode to ”Half Echo” (from ”Maximum”).
     • You must use the ”Delayed Reconstruction” option on the raw data (on a system equipped with reconstruction hardware, such as the scanner itself).
     • Set “Spectral correction” & “Ringing filter” to “yes”.
     • Export your data as .SDAT & .SPAR files.
     • Select the .SDAT file with LCMgui. In Fig 6.4 switch off “Do eddy-current correction”
+  
+  With single-voxel SDAT files: If you want to do ECC: In the Philips “post proc” page, set “Spectral correction” to “yes”. Then ECC is automatically done, and you only have to input the file whose name ends in raw act.SDAT.
 
-3. With single-voxel SDAT files: If you want to do ECC: In the Philips “post proc” page, set “Spectral correction” to “yes”. Then ECC is automatically done, and you only have to input the file whose name ends in raw act.SDAT.
+4. $HOME/.lcmodel/bin/lcmodel < my.control
