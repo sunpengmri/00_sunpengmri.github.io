@@ -22,3 +22,6 @@
 
 
 ROI提取：
+        a. seed based ball
+        b. functional activiate cluster based
+        c. structural atalas based
