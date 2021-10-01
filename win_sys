@@ -19,7 +19,10 @@
   d：offline disk
   e：online disk
 
-3. ssh
+3. ssh 从ubuntu连接我的mac
    scp -r mri@192.168.3.6:/home/mri/Documents /Users/pengsun/Documents
    scp -r localfile.txt mri@192.168.3.6:/home/mri/Documents 
 
+4. Win10如何删除hiberfil.sys休眠文件
+    powercfg -h off
+    powercfg -h on
