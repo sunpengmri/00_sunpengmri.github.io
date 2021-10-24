@@ -1,4 +1,4 @@
-三维重构（cannot be used for philips Multiband data）
+1. 三维重构（cannot be used for philips Multiband data）
 
         uniq_images I*[0123456789] > uniq_image_list.txt
 
@@ -14,4 +14,14 @@
 
         rm uniq_image_list
 
-时间校准
+2. 时间校准
+
+
+
+
+
+
+ROI提取：
+        a. seed based ball
+        b. functional activiate cluster based
+        c. structural atalas based

@@ -1,0 +1,4 @@
+1. RMSE:均方根误差
+ 	rmse = sqrt(mean((YPred-Obverval).^2));
+2. MAPE：平均百分比误差
+	mape = mean(abs((observed - predicted)./observed))*100;
