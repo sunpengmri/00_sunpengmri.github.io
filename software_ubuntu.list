@@ -47,9 +47,7 @@
 14. lcmodel :    
 	a. cd $HOME/.lcmodel
 	b. ./lcmgui
-15. ants: not finishing
-	cmake \
-    -DCMAKE_INSTALL_PREFIX=${workingDir}/antsbin \
-    ../ANTs 2>&1 | tee cmake.log
+15. ants: finished, show download some package from github
+	/home/mri/opt/ants/antsbin/bin
 16. qsiprep-docker
 
