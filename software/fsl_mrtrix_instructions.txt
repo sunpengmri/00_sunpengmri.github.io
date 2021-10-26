@@ -1,0 +1,84 @@
+
+
+0. dwipreprocess:
+	mrmath b0.mif  mean mean_b0_ap.mif -axis 3
+	mrmath b0.mif  mean mean_b0_ap.mif -axis 3
+
+
+
+			#! /bin/zsh
+
+		# convert nifti to native format MIF
+		export ap_raw=DICOM_WIP_DWI_CS2.0_20211023181117_1001
+		export pa_raw=DICOM_WIP_DWI_CS2.0_PA_20211023181117_1101
+
+		mrconvert -fslgrad "$ap_raw".bvec "$ap_raw".bval "$ap_raw".nii.gz ap.mif -force
+		mrconvert -fslgrad "$pa_raw".bvec "$pa_raw".bval "$pa_raw".nii.gz pa.mif -force
+
+		# demo data 
+		export ap_raw=DICOM_WIP_DWI_CS2.0_20211023181117_1001
+		export pa_raw=DICOM_WIP_DWI_CS2.0_PA_20211023181117_1101
+
+
+
+		# mrcat
+
+		# creat a mask
+		mrconvert 
+
+
+		# denoise
+
+		# Gibbs Ring Artifact
+
+		# Motion 
+		# creat B0 pair
+		dwiextract ap.mif b0_ap.mif -bzero -force
+		dwiextract pa.mif b0_pa.mif -bzero -force
+		mrcat b0_ap.mif b0_pa.mif b0_pair.mif -axis 3 -force
+
+		mrcat ap.mif ap.mif ap2.mif -axis 3 -force
+		mrcat b0_ap.mif b0_ap.mif b0_ap2.mif -axis 3 -force
+		mrcat b0_ap2.mif b0_ap2.mif b0_ap4.mif -axis 3 -force
+
+		dwifslpreproc ap.mif topupcorr.mif -pe_dir AP -rpe_pair -se_epi b0_pair.mif -eddy_options " --slm=linear" -force
+
+
+		# demo data 
+		mrconvert b1000_AP/ dwi_1000.mif
+
+		dwiextract dwi_1000.mif - -bzero | mrmath b0.mif mean mean_b0_AP.mif -axis 3
+		mrconvert b0_PA/ - | mrmath - mean mean_b0_PA.mif -axis 3
+
+		mrcat mean_b0_AP.mif mean_b0_PA.mif -axis 3 b0_pair.mif
+		dwifslpreproc dwi_1000.mif topupcorr.mif \
+						-pe_dir AP -rpe_pair -se_epi b0_pair.mif \
+						-eddy_options " --slm=linear --nlter=5 " -force
+
+		# demo data for nii
+		export b0pa=b0_PA_DTI_b0_only_2.5mm_96_PA_20180524132459_23
+		export b1000ap=b1000_AP_DTI_17_Richtungen_2.5mm_96_AP_20180524132459_5
+
+		mrconvert "$b0pa".nii.gz b0pa.mif -force
+		mrconvert -fslgrad "$b1000ap".bvec "$b1000ap".bval "$b1000ap".nii.gz \
+				  b1000ap.mif -force
+
+		dwiextract b1000ap.mif - -bzero | mrmath - mean mean_b0_AP.mif -axis 3 -force
+
+		mrcat mean_b0_AP.mif b0pa.mif -axis 3 b0_pair.mif
+		dwifslpreproc b1000ap.mif topupcorr.mif \
+						-pe_dir AP -rpe_pair -se_epi b0_pair.mif \
+						-eddy_options " --slm=linear" -force
+
+1. dwifslpreproc b1000ap.mif topupcorr.mif -pe_dir AP -rpe_pair -se_epi b0_pair.mif
+
+	mrconvert /home/mri/Documents/GitHub/02_mri/02_diff/BATMAN/DWI/b1000ap.mif /home/mri/Documents/GitHub/02_mri/02_diff/BATMAN/DWI/dwifslpreproc-tmp-757V38/dwi.mif -json_export /home/mri/Documents/GitHub/02_mri/02_diff/BATMAN/DWI/dwifslpreproc-tmp-757V38/dwi.json
+
+	mrconvert /home/mri/Documents/GitHub/02_mri/02_diff/BATMAN/DWI/b1000ap.mif /home/mri/Documents/GitHub/02_mri/02_diff/BATMAN/DWI/dwifslpreproc-tmp-757V38/dwi.mif -json_export /home/mri/Documents/GitHub/02_mri/02_diff/BATMAN/DWI/dwifslpreproc-tmp-757V38/dwi.json
+
+	mrinfo dwi.mif -export_grad_mrtrix grad.b
+
+	mrconvert se_epi.mif topup_in.nii -import_pe_table se_epi_manual_pe_scheme.txt -strides -1,+2,+3,+4 -export_pe_table topup_datain.txt
+
+	topup --imain=topup_in.nii --datain=topup_datain.txt --out=field --fout=field_map.nii.gz --config=/usr/local/fsl/etc/flirtsch/b02b0.cnf --iout=my_unwarped_images --verbose
+		reference: https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/topup/TopupUsersGuide

@@ -48,5 +48,8 @@
 	a. cd $HOME/.lcmodel
 	b. ./lcmgui
 15. ants: not finishing
+	cmake \
+    -DCMAKE_INSTALL_PREFIX=${workingDir}/antsbin \
+    ../ANTs 2>&1 | tee cmake.log
 16. qsiprep-docker
 
