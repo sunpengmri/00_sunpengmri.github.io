@@ -1,3 +1,30 @@
+0. 配置清华源
+    修改文件C:\Users\lenovo\.condarc
+    
+            show_channel_urls: true
+            default_channels:
+            - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+            - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+            - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+            custom_channels:
+            conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+            msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+            bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+            menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+            pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+            pytorch-lts: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+            simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+            channels:
+            - conda-forge
+            - pytorch
+            - msys2
+            - bioconda
+            - menpo
+            - pytorch-lts
+            - simpleitk
+            - defaults
+
+
 1. env management:
     base：python3.8
     R4: 
@@ -8,5 +35,12 @@
     conda activate auantiphyse
     pip install quantiphyse
 
-3. conda remove -n quantiphyse --all
+3. 查看环境，及删除环境
+    conda remove -n quantiphyse --all
     conda info --envs
+
+4. 配置deeplearning环境（MONAI）
+    conda create -n DL python=3.8
+    conda activate DL
+    a) 查看cuda版本：nvcc --version
+    b) conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c conda-forge

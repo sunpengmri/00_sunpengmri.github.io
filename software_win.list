@@ -12,5 +12,6 @@
    		### base for mri
    			#### dipy: nibabel dipy fury cvxpy
             #### mdt: Microstructure Diffusion Toolbox，https://mdt-toolbox.readthedocs.io/en/latest_release/index.html，https://github.com/robbert-harms/MDT
-   		### DL for deeplearning
+   		
+		   ### DL for deeplearning
    			pytorch keras tensorflow R kaggle
