@@ -1,0 +1,8 @@
+
+from tensorboardX import SummaryWriter
+logs_dir = os.path.join(root_dir, "logs")
+writer = SummaryWriter(data_dir)
+dummy_input = torch.rand(1, 1, 96, 96,96)
+writer.add_graph(model, dummy_input)
+
+tensorboard --logdir=E:\00_github\02_deep_learning\02_monai\datasets\Task09_Spleen
