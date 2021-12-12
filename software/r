@@ -14,4 +14,22 @@
 
 5. conda config --show channels
 
-6. 
+6. 查看路径，切换路径
+	getwd()
+	seted()
+
+7. 构建数据：
+	
+	wide_data <- data.frame(
+	  Player = c("Player1", "Player2", "Player3"),	
+	  name = c("SuLie", "LuBan", "ZhenJi"),	
+	  sex = c("male", "male", "female"),	
+	  education = c("master", "Bachelor", "PhD")	
+	)	
+
+8. 宽数据转长数据
+	
+long_data <- wide_data %>%	
+  pivot_longer(-Player,	
+               names_to = "Introduction",	
+               values_to = "Message")
