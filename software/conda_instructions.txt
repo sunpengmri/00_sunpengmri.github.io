@@ -24,6 +24,22 @@
             - simpleitk
             - defaults
 
+    conda config --show-sources
+
+
+    2  
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch-lts
+        conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/simpleitk
+        
+
 
 1. env management:
     base：python3.8

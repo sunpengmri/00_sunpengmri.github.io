@@ -60,10 +60,49 @@
 
 
 
-ubuntu_vmware
+ubuntu_vmware: sudo apt-get install build-essential
 	1. sublime
 	2. vscode
 		git配置
 	3. 共享文件夹：/mnt/hgfs
 
+	4. anaconda
+		1) choose python 3.8 version 202105
+		2) base for mri
+			a) fsl: need python2, install in system enviroment; path: home/peng/opt/fsl;done
+			b) ants: home/peng/opt/ants
+			c) afni
+				sudo apt-get install -y tcsh xfonts-base libssl-dev       \
+                        python-is-python3                 \
+                        python3-matplotlib                \
+                        gsl-bin netpbm gnome-tweak-tool   \
+                        libjpeg62 xvfb xterm vim curl     \
+                        gedit evince eog                  \
+                        libglu1-mesa-dev libglw1-mesa     \
+                        libxm4 build-essential            \
+                        libcurl4-openssl-dev libxml2-dev  \
+                        libgfortran-8-dev libgomp1        \
+                        gnome-terminal nautilus           \
+                        gnome-icon-theme-symbolic         \
+                        firefox xfonts-100dpi             \
+                        libgdal-dev libopenblas-dev       \
+                        libnode-dev libudunits2-dev       \
+                        libgfortran
+				sudo apt install r = 4.1.2
+				sudo ln -s /usr/lib/x86_64-linux-gnu/libgsl.so.23 /usr/lib/x86_64-linux-gnu/libgsl.so.19
+			d) conda install -c mrtrix3 mrtrix3
+			e) dipy == 1.4 pip install dipy
+			f) qsiprep (not supported in python 3.8 due to vtk 8.1.2)
+				Installing qsiprep script to /home/peng/opt/anaconda3/bin
+			
 
+	
+	5. libqt4 (not  needed in afni)
+		sudo add-apt-repository ppa:rock-core/qt4
+		sudo apt update
+		sudo apt install PACKAGE_NAME
+		sudo add-apt-repository --remove ppa:rock-core/qt4
+		sudo apt remove --autoremove libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4*
+
+
+		
