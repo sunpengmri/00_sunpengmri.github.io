@@ -2,6 +2,14 @@
 
 1. install package: 
 	a: install.packages('dplyr');install.packages('tidyr');install.packages('vioplot'): corrplot; gmodels; matrixStats
+	b:  require(devtools)
+ 		install_version("ggplot2", version = "3.2.1",repos = "http://cran.us.r-project.org")
+	c: pkgurl <- "https://cran.r-project.org/src/contrib/Rcpp_1.0.7.tar.gz"
+		pkgurl <- "https://cran.r-project.org/src/contrib/terra_1.4-22.tar.gz"
+		install.packages(pkgurl, repos=NULL, type="source") install.packages(pkgurl, repos=NULL, type="source") 
+	c: remove.packages(c("BSgenome.Athaliana.TAIR.TAIR9", "BSgenome.Hsapiens.UCSC.hg19", "GenomeInfoDb", "GenomeInfoDbData", "GenomicAlignments", "GenomicFeatures", "GenomicRanges", "GO.db", "GSEABase", "KEGGgraph", "KEGGREST", "learnr", "RgoogleMaps", "RSQLite", "yeastRNASeq", "yyplot"), lib = .libPaths()[1])
+
+
 
 2. biocLite
 	source("http://bioconductor.org/biocLite.R")
@@ -34,9 +42,23 @@ long_data <- wide_data %>%
                names_to = "Introduction",	
                values_to = "Message")
 
+<<<<<<< HEAD
 9. 数据分布检验 检验包：
 
 10. MS分析
 	if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 	BiocManager::install("SummarizedExperiment")
+=======
+9. install rstan
+		install.packages('Rcpp')
+		install.packages('BH')
+		The rstan package also depends heavily on several other R packages:
+		StanHeaders (Stan C++ headers)
+		BH (Boost C++ headers)
+		RcppEigen (Eigen C++ headers)
+		Rcpp (facilitates using C++ from R)
+		inline (compiles C++ for use with R)
+
+
+>>>>>>> 4c878ab89d08bfd2da62aab6061331beb919d6dd
