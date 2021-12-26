@@ -33,3 +33,10 @@ long_data <- wide_data %>%
   pivot_longer(-Player,	
                names_to = "Introduction",	
                values_to = "Message")
+
+9. 数据分布检验 检验包：
+
+10. MS分析
+	if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+	BiocManager::install("SummarizedExperiment")
