@@ -94,6 +94,7 @@ ubuntu_vmware: sudo apt-get install build-essential
 			e) dipy == 1.4 pip install dipy
 			f) qsiprep (not supported in python 3.8 due to vtk 8.1.2)
 				Installing qsiprep script to /home/peng/opt/anaconda3/bin
+				creat a new env with python3.7
 			
 
 	
