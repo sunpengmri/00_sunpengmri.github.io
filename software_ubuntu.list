@@ -96,6 +96,9 @@ ubuntu_vmware: sudo apt-get install build-essential
 				Installing qsiprep script to /home/peng/opt/anaconda3/bin
 				creat a new env with python3.7
 			
+			g) freesurfer
+			
+			
 
 	
 	5. libqt4 (not  needed in afni)
@@ -106,4 +109,18 @@ ubuntu_vmware: sudo apt-get install build-essential
 		sudo apt remove --autoremove libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4*
 
 
-		
+	6. slicer3D
+	7. MITK-DIFF
+		a. cannot read data
+	8. mrtrix3
+	/usr/local/mrtrix3/bin
+	
+	100. Deeplearning tools
+		setup 
+			conda create -n DL python=3.8
+			conda install pytorch torchvision torchaudio cpuonly -c pytorch
+
+
+
+		a. deepbrain: https://github.com/rcruces/deepbrain
+			pip install deepbrain
