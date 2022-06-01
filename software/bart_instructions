@@ -1,3 +1,6 @@
 1. Install 
-
+    sudo apt-get install gcc make libfftw3-dev liblapacke-dev libpng-dev libopenblas-dev gfortran
+    sudo apt install octave
+    install version 0.5.2 of the ISMRMRD library
+        https://ismrmrd.github.io/apidocs/1.5.0/
 2. test
