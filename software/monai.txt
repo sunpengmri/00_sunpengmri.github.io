@@ -1,0 +1,9 @@
+# Download Sample Apps
+monailabel apps # List sample apps
+monailabel apps --download --name radiology --output apps
+
+# Download MSD Datasets
+monailabel datasets # List sample datasets
+monailabel datasets --download --name Task09_Spleen --output datasets
+
+monailabel start_server --app apps/radiology --studies datasets/Task09_Spleen/imagesTr --conf models deepedit

@@ -1,37 +1,87 @@
 1. docker: sudo apt  install docker.io
-	docker ps 
+	sudo docker ps 
 	docker stop
 
 2. change dns and host to access nvidia
 	
-	DNS: 8.8.8.8
-	sudo vim /etc/resolv.conf
+	sudo vim /etc/systemd/resolved.conf
+	[Resolve]
+	DNS=114.114.114.114
+	DNS=8.8.8.8
+	#FallbackDNS=
+	#Domains=
+	#LLMNR=no
+	#MulticastDNS=no
+	#DNSSEC=no
+	#Cache=yes
+	systemctl restart systemd-resolved.service
+	systemd-resolve --status
+
 
 	sudo vim /etc/hosts
 	185.199.111.153 nvidia.github.io
 	185.199.108.153 nvidia.github.io
 	sudo systemd-resolve --flush-caches
 
-3. CUDA 11.2.1 and CUDNN
+3. CUDA 11.3 and CUDNN
 
 	wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
 	sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-	wget https://developer.download.nvidia.com/compute/cuda/11.2.1/local_installers/cuda-repo-ubuntu2004-11-2-local_11.2.1-460.32.03-1_amd64.deb
-	sudo dpkg -i cuda-repo-ubuntu2004-11-2-local_11.2.1-460.32.03-1_amd64.deb
-	sudo apt-key add /var/cuda-repo-ubuntu2004-11-2-local/7fa2af80.pub
+	wget https://developer.download.nvidia.com/compute/cuda/11.4.0/local_installers/cuda-repo-ubuntu2004-11-4-local_11.4.0-470.42.01-1_amd64.deb
+	sudo dpkg -i cuda-repo-ubuntu2004-11-4-local_11.4.0-470.42.01-1_amd64.deb
+	sudo apt-key add /var/cuda-repo-ubuntu2004-11-4-local/7fa2af80.pub
 	sudo apt-get update
 	sudo apt-get -y install cuda
 
 	https://developer.nvidia.com/cudnn
 
-4. Nvidia Clara
+		到目前为止pytorch好像还是只支持到10.2 / 11.3，可以考虑在linux/其他os下安装多版本cuda并进行切换举例： Ubuntu下可以再装个11.3/11.2版本的cuda，以支持pytorch gpu1.去nvidia官网下载，并安装对应版本的cuda，并进行配置
+		2.cuda symbol link的选择（首次安装，选y，安装额外的版本，选n）
+		3.如果需要切换cuda version，进入/usr/local，移除cuda这个symbolic link，然后再重新链接需要的versioncd /usr/local
 
-5. pytorch: in conda and monai
+		sudo rm -rf cuda
+		sudo ln -s /usr/local/cuda-11.3 /usr/local/cuda
+		4.安装对应cuda版本的pytorch，在官网选择相应的条件，并复制安装命令
+		5.测试pytorch以及pytorch_gpu
+
+5. pytorch: in anaconda(base) and monai
+
+6. tensorflow: in anaconda(tensorflow)
+4. Nvidia Clara (/home/peng/github/01_AI/05_clara/clara-train-examples)
+	a. docker install and hosts setup
+	b. using script to install Docker in script/installDocker.sh
+	c. using clara-train-examples as a start
+	d. start docker and jupyter script/startClaraTrainNoteBooks.sh
+	e. in Jupyter: start terminal, then: AIAA start -w /claraDevDay/AIAA/workspace/ --engine AIAA &
+	f. using jupyter notebook and slicer3D
+	h. finish: 1. delete model; 2. ./stopClaraTrainNoteBooks.sh 
+	i. load model: 
+		1. !curl -X PUT "http://127.0.0.1:5000/admin/model/clara_pt_liver_and_tumor_ct_segmentation" -F 'ngc={"path":"nvidia/med/clara_pt_liver_and_tumor_ct_segmentation","version":"1"}'
+		2. modelName="lung"
+			modelFolderPath="/claraDevDay/AIAA/DownloadsFromNGC/clara_pt_covid19_ct_lung_segmentation/models/model.ts"
+			configFolderPath="/claraDevDay/AIAA/DownloadsFromNGC/clara_pt_covid19_ct_lung_segmentation/config/config_aiaa.json"
+			!AIAA load $modelName config $configFolderPath $modelFolderPath 
 
 6. matlab: opt/MATLAB
 7. anaconda: 
+		base: python3.9
 			pytorch
-			monai
+			pip install monai Successfully installed monai-0.8.1
+			pip install monailabel 
+			pip install monai-deploy-app-sdk : some errors?
+			pip install koila
+				只需在第一行代码，也就是把输入用lazy张量wrap起来，并指定bacth维度——koila就能自动帮你计算剩余的GPU内存并使用正确的batch size了。在本例中，batch=0，则修改如下： input = lazy(torch.randn(8, 28, 28), batch=0)完事儿！就这样和PyTorch“炼丹”时的OOM报错说拜拜。
+		
+		tensorflow: python3.7
+			sudo pip install tensorflow  -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+		
+		mri :python3.8
+			dipy pip install dipy  -i https://pypi.tuna.tsinghua.edu.cn/simple 
+					Successfully installed dipy-1.5.0 h5py-3.6.0 nibabel-3.2.2 numpy-1.22.3 packaging-21.3 pyparsing-3.0.8 scipy-1.8.0 tqdm-4.64.0
+
+			conda install -c mrtrix3 mrtrix3
+
 			R: install.packages("devtools")
 			rstudio: should be started in terminal
 			fae
@@ -51,11 +101,21 @@
 	/home/mri/opt/ants/antsbin/bin
 16. qsiprep-docker
 
+17. sudo apt install terminator
+18. sudo apt install mlocate
+19. sudo apt install meld: meld
 
+20. Slicer3D:opt, need qt5 sudo apt-get install qt5-default 
 
-
-
-
+21. sudo apt install cmake
+22. sudo apt install aria2: 
+	aria2c -i uris.txt
+	aria2c http://example.org/mylinux.iso
+	aria2c http://a/f.iso ftp://b/f.iso
+	aria2c -x2 http://a/f.iso
+	aria2c http://example.org/mylinux.torrent
+	aria2c 'magnet:?xt=urn:btih:248D0A1CD08284299DE78D5C1ED359BB46717D8C'
+23. 
 
 
 
