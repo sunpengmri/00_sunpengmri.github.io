@@ -2,3 +2,8 @@
 2. 切换clang and gcc：
 3. 显示隐藏文件：Command+Shift+. 
 4. 打开允许未知来源：sudo spctl --master-disable
+5. 信任任何来源的开关
+	sudo spctl --master-disable
+	sudo spctl --master-enable
+6. 显示隐藏文件：
+	按Command + Shift + 句点 (CMD+Shift+.)快捷键。
