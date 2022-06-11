@@ -1,0 +1,114 @@
+# this file for PPE key info
+start_stop_procs.pl start
+start_stop_procs.pl stop
+
+
+1. testframwork or tf 
+    a. configuration system: 787 for CX
+    b. 
+2. PPE:
+    a. scansim and reconsim is needed for running a sequence
+    b. import dicom data from patient administration
+
+3. GVE
+    a. Activate GVE: It should be activated by default in file  G: \Site SiteSite\bstrace.
+        GVE *  * 
+    b. generate molli sequence (success): before running the molli you should run   survey and planning
+
+4. Git for version control
+    vip: if check out new branch, should type "mrmake"
+    a. git diff
+    b. git diff --staged
+    c. git reset --hard
+    d. git log, for commit history
+    e. git status, for not staged changes
+    PS:
+    d. using git branch for new project
+5. SDM(TBD)
+    prescan also activate SDM
+6. ExamCard
+    a. prescan also Activate 
+5. Coding
+    a. build and patch (cd G:\Ppe\PPEVM_R571SP_0046)
+        1. mrmake
+        2. makepatch --diff base
+        3. not .pdb for patching
+    b. Parameters and Parameter WizardParameter 
+        1. setup: success
+            Command: R:\MRtools\general\methods\ParameterWizard.cmd
+            Arguments: G:\Ppe\PPEVM_R571SP_0046\system
+        2. how to use Parameter WizardParameter 
+            a.
+        3. The parameter class allows to define interfaces between these modules: PDF RECON Database Viewing
+        4. Examination Parameter: UI input
+        5. Information Parameters
+        6. Control Parameters: same for all protoclos
+        7. RC parameter: Interface between PDF and Reconstruction
+        8. Par(EX_GEO->fov).set_range(range);
+        9. Par(EX->partial_echo).enable() for conflict check and display
+        10. Par(EX->partial_echo).disable() for disable conflict check and display
+
+    c. GOAL objects
+        0. 21 object types
+        1. GOAL objects serve as translational layer between physical description  of components of MR experiment and the corresponding hardware action
+        2. Data structure to describe components: building blocks of MR experiment
+        3. <OBJ type or object-code or OBJ>::<object instance or object name>-><attribute name>
+        4. Attribute Groups
+            a. Primary Attributes
+            b. Run-Time Attributes
+            c. Read-Only (Secondary) Attributes
+        4. GR 
+            a. GR::s_ex->dur = 7.4245
+            b. 
+        5. RF
+            a. RF::echo->phase = 90
+            b. Flip Angle [degree]; B1 [mT];Time attributes [ms]
+            c. Reference is calculated automatically at the phase=0 point of
+                the RF pulse
+            d. T/R switching intervals    
+    d. Group objects
+        • GENDATA – links all objects e.g. patient orientation
+        • STACK – set of slices in specific orientation
+        • SLAB – regional saturation slab
+        • LCA – location - extent of excitation volume e.g. used in deriving ΔKy
+        • ENC – encoding – excursion in kspace e.g. Ky_max
+    e. C++ source files
+        1. G:\Ppe\R5_3_0_xxxx_SWIDxxxx\system\scanning\mrmethods
+            a. metacqglo: Object declaration and definitions
+            b. methglo: Global – both Host (PDF) and xDAS (MPF)
+            c. methmpf: MPF: xDAS code
+            d. methpdf: PDF: Host code
+                1. src: .cpp
+                2. inc: .h
+                3. bin: .obj
+            e. src: Parameter and Enumerator name tags (.resx; .txt)
+        2. <dir><scope><function><type>.<extension>
+            mpicardglo.h
+            mpiffe_sq.cpp
+            a. <dir>: mp: MethPDF; mm: MethMPF; mg: MethGLO; ma: MetACQGLO
+            b. <scope>:  general, preparation, universal, imaging, spectroscopy, stt (System Tests)
+            c. <function>: 2dp, 2D RF Pulse; ffe, Fast Field Echo; Day1-1.5 Naming COnventions, p15 
+            d. <type>
+                1. _sq, Sequence calculation
+                2. glo, Prototyping of external functions (global include file)
+            e. <Extension>
+        3. object declaration
+            a. GR: GR_Objects.h GR_Objects.cpp
+            b. RF: GR_Objects.h GR_Objects.cpp
+            c. SQ: SQ_Objects.h SQ_Objects.cpp
+        
+    f. exercise one: revise a TE 100ms SE using SDM
+        1. revise the SQ duration
+        2. revise other children OBJ
+
+    h. log and debug
+        1. Start > cmd> logd: real-time updates of log file
+        2. in visual studio:
+            a. Methods::Pars::VAL01_ACQ
+            b  {,,methods.objects.dll}Methods::Objects::RF::ex
+    i. example Propeller saturation
+        1. git branch Propeller_sat; mrmake
+        2. a RF calculation error in the raw code
+        3. using IFFE->dynamic_scan to replace the iffe_dynamic_scan;
+        4. success in GVE!
+    j. example t1rho

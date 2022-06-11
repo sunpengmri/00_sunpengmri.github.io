@@ -1,0 +1,9 @@
+1. windows C++ 编译
+    到路径下面，gpi_make --all
+    gridding
+    spiral
+    重新下载编译解决spiral 错误
+2. pickle 文件
+    Unix 的 “\n” 和 DOS 的 “\r\n”
+    处理方法：
+    重新生成一个新的文件：

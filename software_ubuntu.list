@@ -157,7 +157,10 @@ ubuntu_vmware: sudo apt-get install build-essential
 				creat a new env with python3.7
 			
 			g) freesurfer
-			
+			h. philips gpi (should revise .bashrc for QT5)
+				importError: /home/peng/opt/anaconda3/envs/gpi_env/lib/python3.8/site-packages/PyQt5/QtCore.abi3.so: undefined symbol: _ZdlPvm, version Qt_5
+
+
 			
 
 	
@@ -170,11 +173,15 @@ ubuntu_vmware: sudo apt-get install build-essential
 
 
 	6. slicer3D
+		TBD
 	7. MITK-DIFF
 		a. cannot read data
+
 	8. mrtrix3
-	/usr/local/mrtrix3/bin
-	
+		/usr/local/mrtrix3/bin
+
+	9. bart
+		success
 	100. Deeplearning tools
 		setup 
 			conda create -n DL python=3.8

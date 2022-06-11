@@ -2,3 +2,7 @@
  	rmse = sqrt(mean((YPred-Obverval).^2));
 2. MAPE：平均百分比误差
 	mape = mean(abs((observed - predicted)./observed))*100;
+
+
+software setup
+ cvx安装

@@ -1,0 +1,36 @@
+0. software start: a. Consol PC: research tool; a error, but recon success
+                    b. remote PC: start port 13000
+                    c. Consol PC: Test-NetConnection -ComputerName 192.168.3.13 -Port 13000
+                    d. remote PC:Consol PC: Test-NetConnection -ComputerName 192.168.3.22 -Port 6555
+                    e. should enable all CSK 
+
+1. lecture one p13, inline Fourier: python for inline PRIDE
+2. lecture two: 
+    a. p5 use SQL database to query database
+    b. pride in charge of exporting and importing action (leacher.exe)
+3. lecture three:
+    a. p25, import dicom
+    b. p28, the myTool_TEMPLATE is a good starting point for new APP
+    c. p42, generate the myTool_TEMPLATE.exe need to build in PPE_VM
+    d. p44, 1. finished;2. finished；
+            3. play in vscode,args=["0","C:\TempinputSeries" "C:\TempoutputSeries"]
+            4. build in PPE_VM to generate kspaceFilter.exe
+
+5. lecture five:
+    a. p6: If your site uses patches already and the tool is associated with    the patch: The Pride tool will need to be added to the patch files in E:\Research and the system patched as normal
+    b. p7:If your site uses patches already and the tool is a stand alone then you may choose to have a specific patch in E:\Research just for the pride tool.
+    c. p19 finish the shimtool
+7. lecture seven
+    a. the PRIDE app 
+
+8. lecture eight
+    success in APT
+9. 
+13. lecture 13
+    a. exercise 1: if you want to export the 2D image, then should revise the function write_rec_3D to write_rec xmlrec.py file(line 516) 
+    b. exercise 2: how to invert image contrast? minux plus?
+    c. exercise 3: in remote PC, success. how to process dicom?
+    d. exercise 4: in remote PC success. how to process dicom?
+    e. exercise 5: invert,filter & downsample 2 in x and y
+14. PRs and CRs
+    a. export multi series: success
