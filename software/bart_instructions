@@ -3,4 +3,9 @@
     sudo apt install octave
     install version 0.5.2 of the ISMRMRD library
         https://ismrmrd.github.io/apidocs/1.5.0/
-2. test
+2. using bash kernal in jupyter notebook
+
+3. Command:
+    a. bart ecalib: t takes a Cartesian kspace data with fully-sampled calibration region as input and outputs ESPIRiT sensitivity maps with the same image dimensions  as the input kspace. ecalib usage can be as simple as follows:
+
+    b. bart show -m traj: show data dimensions
