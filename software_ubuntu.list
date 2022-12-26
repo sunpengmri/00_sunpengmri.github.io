@@ -84,14 +84,16 @@
 
 			R: install.packages("devtools")
 			rstudio: should be started in terminal
-			fae
-			matrix3
-			fsl
+			fae:
+			matrix3:
+			fsl:
+				
 8. pycharm
 
 ### mri
 9. dpabi: should install docker and install the image
-10. fsl
+10. fsl:
+	sudo $FSLDIR/fslpython/bin/conda update -n fslpython -c conda-forge --update-all fsleyes
 11. afni
 12. slicer3D:
 13. MricronGL: MRIcroGL
@@ -162,9 +164,18 @@ ubuntu_vmware: sudo apt-get install build-essential
 			h. philips gpi (should revise .bashrc for QT5)
 				importError: /home/peng/opt/anaconda3/envs/gpi_env/lib/python3.8/site-packages/PyQt5/QtCore.abi3.so: undefined symbol: _ZdlPvm, version Qt_5
 
-			i) 
-			
+			i) Quantiphyse
+				conda install quantiphyse
 
+				should change qt-version when using quantiphyse
+
+				# QT5
+				# for QT5.12
+				export QTLIB=/usr/lib/x86_64-linux-gnu
+				export LD_LIBRARY_PATH=${QTLIB}:$LD_LIBRARY_PATH
+				# for QT 5.15
+				#export QTLIB=/home/peng/opt/anaconda3/envs/gpi_env/lib
+				#export LD_LIBRARY_PATH=${QTLIB}
 	
 	5. libqt4 (not  needed in afni) and pyqt4 (should deactivate anaconda when used in afni)
 
