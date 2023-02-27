@@ -1,3 +1,73 @@
+1. system: ubuntu 22.04 LTS
+
+2. sublime text: from system
+	set font size to 20
+
+3. change apt source to ali
+
+	sudo gedit /etc/apt/source.list
+
+	deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
+	deb-src http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
+	deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse
+	deb-src http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse
+	deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse
+	deb-src http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse
+	deb http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse
+	deb-src http://mirrors.aliyun.com/ubuntu/ jammy-proposed main restricted universe multiverse
+	deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse
+	deb-src http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse
+
+	sudo apt update
+	
+4. vscode
+	download so slow
+
+5. nvidia-driver & CUDA & CUDNN
+	(5.1) lspci | grep -i nvidia
+	(5.2) download driver: https://www.nvidia.cn/Download/index.aspx?lang=cn
+	(5.3) sudo apt-get update
+		  sudo apt-get install gcc
+	      sudo apt-get install g++
+          sudo apt-get install make
+    (5.4) sudo gedit /etc/modprobe.d/blacklist.conf 
+    		## add in last two lines
+    		blacklist nouveau
+			options nouveau modeset=0
+
+			sudo update-initramfs -u
+			lsmod | grep nouveau
+	(5.5) 本人电脑惠普 按F10进入BIOS，找到安全启动项，然后禁用，电脑不同进入BIOS方式不同。
+	(5.6) installation(x11 configure heiping)
+		sudo telinit 3 
+		sudo service gdm3 stop
+		sudo chmod 777 NVIDIA-Linux-x86_64-525.60.11.run   #赋予可执行权限
+		sudo ./NVIDIA-Linux-x86_64-525.60.11run  --no-opengl-files --no-x-check #安装
+		sudo service gdm3 start 
+
+
+	(5.7) CUDA
+
+		wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+		sudo mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600wget https://developer.download.nvidia.com/compute/cuda/12.0.1/local_installers/cuda-repo-ubuntu2204-12-0-local_12.0.1-525.85.12-1_amd64.deb
+		sudo dpkg -i cuda-repo-ubuntu2204-12-0-local_12.0.1-525.85.12-1_amd64.deb
+		sudo cp /var/cuda-repo-ubuntu2204-12-0-local/cuda-*-keyring.gpg /usr/share/keyrings/
+		sudo apt-get update
+		sudo apt-get -y install cuda
+
+		# CUDA：
+	export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+	export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+	(5.8) CUDNN
+
+6. anaconda
+	set path in .bashrc
+
+7. creat Deep Learning conda env
+
+
+
 1. docker: sudo apt  install docker.io
 	sudo docker ps 
 	docker stop
