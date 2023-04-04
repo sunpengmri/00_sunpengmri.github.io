@@ -1,3 +1,6 @@
+0. mklink:"G:\我的图片" is the source 
+   mklink /d "G:\OneDrive - webmail.hzau.edu.cn\我的图片" "G:\我的图片"
+
 1. everything: installed
 2. Total commander:
 3. Snipaste
