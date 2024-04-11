@@ -30,6 +30,68 @@
   c:刷新DNS：sudo killall -HUP mDNSResponder
 
 12. 回退commit：
+    1.查看提交历史： 首先，你需要查看项目的提交历史，找到你想要回滚到的那个提交的哈希值。可以使用以下命令：
+    git log
+
     $ git reset --hard HEAD^        回退到上个版本
     $ git reset --hard HEAD~3       回退到前3次提交之前，以此类推，回退到n次提交之前
     $ git reset --hard commit_id    退到/进到 指定commit的sha码
+
+    –soft：回滚到某个提交，但保留工作区和暂存区的改动，只是撤销了提交记录。这意味着你还可以重新提交这些改动。
+    –mixed（默认）：回滚到某个提交，并更新暂存区，但不改变工作区。这意味着你需要在工作区手动撤销改动。
+    –hard：彻底回滚到某个提交，包括工作区、暂存区和版本库。这会删除回滚点之后的提交记录，所以使用时要特别小心。
+
+    $ git reset --hard HEAD^        回退到上个版本
+    $ git reset --hard HEAD~3       回退到前3次提交之前，以此类推，回退到n次提交之前
+    $ git reset --hard commit_id    退到/进到 指定commit的sha码
+
+    这样，本地代码就回退到了正确版本。但是，远程仓库还是错误版本。需要使用git push命令强制推送回退后的代码：
+    git push -f
+
+
+13. branch
+    1.查看本地分支
+    git branch
+
+    2.查看本地分支+上次提交的信息
+    git branch -v
+
+    3.查看本地分支+上次提交的信息+本地和远程分支的关系
+    git branch -vv
+
+    4.查看本地分支+上次提交的信息+本地和远程分支的关系+远程分支
+    git branch -vv -a
+
+    5.只查看远程分支
+    git branch -r
+
+    6.删除本地分支
+    git branch -d (branchName)
+
+    7.删除远程分支
+    git push <主机名> -d <分支名>
+    或者
+    git push <主机名> --delete <分支名>
+    或者
+    git push <主机名> :<分支名>
+
+    8.切换本地分支
+    git checkout (branchName)
+
+    9.创建本地分支
+    git branch (branchName) //创建本地分支
+    或者
+    git checkout -b (branchName) //创建本地分支并切换
+
+    10.创建远程分支
+    git push <远程主机名> <本地分支名>:<远程分支名>
+
+
+
+
+
+
+
+
+
+
