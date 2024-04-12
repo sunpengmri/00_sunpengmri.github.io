@@ -1,0 +1,115 @@
+ubuntu_vmware: sudo apt-get install build-essential
+	1. sublime
+	2. vscode
+		git配置
+	3. 共享文件夹：/mnt/hgfs
+
+	4. anaconda
+		1) choose python 3.8 version 202105
+		2) base for mri
+			a) fsl: need python2, install in system enviroment; path: home/peng/opt/fsl;done
+			b) ants: home/peng/opt/ants
+			c) afni
+				pyqt4 (should deactivate anaconda when used in afni)
+				sudo apt-get install -y tcsh xfonts-base libssl-dev       \
+                        python-is-python3                 \
+                        python3-matplotlib                \
+                        gsl-bin netpbm gnome-tweak-tool   \
+                        libjpeg62 xvfb xterm vim curl     \
+                        gedit evince eog                  \
+                        libglu1-mesa-dev libglw1-mesa     \
+                        libxm4 build-essential            \
+                        libcurl4-openssl-dev libxml2-dev  \
+                        libgfortran-8-dev libgomp1        \
+                        gnome-terminal nautilus           \
+                        gnome-icon-theme-symbolic         \
+                        firefox xfonts-100dpi             \
+                        libgdal-dev libopenblas-dev       \
+                        libnode-dev libudunits2-dev       \
+                        libgfortran
+				sudo apt install r = 4.1.2
+				sudo ln -s /usr/lib/x86_64-linux-gnu/libgsl.so.23 /usr/lib/x86_64-linux-gnu/libgsl.so.19
+			d) conda install -c mrtrix3 mrtrix3
+			e) dipy == 1.4 pip install dipy
+			f) qsiprep (not supported in python 3.8 due to vtk 8.1.2)
+				Installing qsiprep script to /home/peng/opt/anaconda3/bin
+				creat a new env with python3.7
+			
+			g) freesurfer
+			h. philips gpi (should revise .bashrc for QT5)
+				importError: /home/peng/opt/anaconda3/envs/gpi_env/lib/python3.8/site-packages/PyQt5/QtCore.abi3.so: undefined symbol: _ZdlPvm, version Qt_5
+
+			i) Quantiphyse
+				conda install quantiphyse
+
+				should change qt-version when using quantiphyse
+
+				# QT5
+				# for QT5.12
+				export QTLIB=/usr/lib/x86_64-linux-gnu
+				export LD_LIBRARY_PATH=${QTLIB}:$LD_LIBRARY_PATH
+				# for QT 5.15
+				#export QTLIB=/home/peng/opt/anaconda3/envs/gpi_env/lib
+				#export LD_LIBRARY_PATH=${QTLIB}
+	
+	5. libqt4 (not  needed in afni) and pyqt4 (should deactivate anaconda when used in afni)
+
+		sudo add-apt-repository ppa:rock-core/qt4
+		sudo apt update
+		sudo apt install libqt4-dev
+		cd ~/Downloads
+		wget http://archive.ubuntu.com/ubuntu/pool/universe/q/qt-assistant-compat/libqtassistantclient4_4.6.3-7build1_amd64.deb
+		sudo apt-get install ./libqtassistantclient4_4.6.3-7build1_amd64.deb
+		wget http://archive.ubuntu.com/ubuntu/pool/universe/p/python-qt4/python-qt4_4.12.1+dfsg-2_amd64.deb
+		sudo apt-get install ./python-qt4_4.12.1+dfsg-2_amd64.deb
+		wget http://archive.ubuntu.com/ubuntu/pool/universe/p/python-pyaudio/python-pyaudio_0.2.11-1build2_amd64.deb
+		sudo apt-get install ./python-pyaudio_0.2.11-1build2_amd64.deb
+		sudo apt-get install libcanberra-gtk-module
+
+		sudo add-apt-repository --remove ppa:rock-core/qt4
+		sudo apt remove --autoremove libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4*
+
+
+	6. slicer3D
+		TBD
+	7. MITK-DIFF
+		a. cannot read data
+
+	8. mrtrix3
+		/usr/local/mrtrix3/bin
+
+	9. bart
+		success
+	100. Deeplearning tools
+		setup 
+			conda create -n DL python=3.8
+			conda install pytorch torchvision torchaudio cpuonly -c pytorch
+
+		a. deepbrain: https://github.com/rcruces/deepbrain
+			pip install deepbrain
+		b. pip install antspyx
+
+
+ cmake .. \
+-DCMAKE_BUILD_TYPE:STRING=Release   \
+-DCMAKE_INSTALL_PREFIX:PATH=/home/peng/opt/minc\
+-DMT_BUILD_ABC:BOOL=ON   \
+-DMT_BUILD_ANTS:BOOL=ON   \
+-DMT_BUILD_C3D:BOOL=ON   \
+-DMT_BUILD_ELASTIX:BOOL=ON   \
+-DMT_BUILD_IM:BOOL=OFF   \
+-DMT_BUILD_ITK_TOOLS:BOOL=ON   \
+-DMT_BUILD_LITE:BOOL=OFF   \
+-DMT_BUILD_SHARED_LIBS:BOOL=ON   \
+-DMT_BUILD_VISUAL_TOOLS:BOOL=ON   \
+-DMT_USE_OPENMP:BOOL=ON   \
+-DUSE_SYSTEM_FFTW3D:BOOL=OFF   \
+-DUSE_SYSTEM_FFTW3F:BOOL=OFF   \
+-DUSE_SYSTEM_GLUT:BOOL=OFF   \
+-DUSE_SYSTEM_GSL:BOOL=OFF   \
+-DUSE_SYSTEM_HDF5:BOOL=OFF   \
+-DUSE_SYSTEM_ITK:BOOL=OFF   \
+-DUSE_SYSTEM_NETCDF:BOOL=OFF   \
+-DUSE_SYSTEM_NIFTI:BOOL=OFF   \
+-DUSE_SYSTEM_PCRE:BOOL=OFF   \
+-DUSE_SYSTEM_ZLIB:BOOL=OFF

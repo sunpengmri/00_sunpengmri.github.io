@@ -1,0 +1,33 @@
+0. mklink:"G:\我的图片" is the source 
+   mklink /d "G:\OneDrive - webmail.hzau.edu.cn\我的图片" "G:\我的图片"
+
+1. everything: installed
+2. Total commander:
+3. Snipaste
+4. Microsoft To-Do
+5. ScreenToGIF
+6. Geek Uninstaller
+7. QuickLook
+8. dpabi
+   a. win10 专业版
+10. VM 
+   a. USB
+
+8. anaconda:
+   ## env: 
+   		### base for mri
+   			#### dipy: nibabel dipy fury cvxpy
+            #### dmipy: 
+                  ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour        is the source of the following dependency conflicts.
+                  quantiphyse 0.9.9.post1 requires pyqtgraph>=0.11.1, which is not installed.
+                  quantiphyse 0.9.9.post1 requires PySide2, which is not installed.
+                  sdcflows 2.0.6 requires scipy~=1.6.1, but you have scipy 1.4.1 which is incompatible.
+                  pybids 0.13.2 requires sqlalchemy<1.4.0.dev0, but you have sqlalchemy 1.4.28 which is incompatible.
+            #### mdt: Microstructure Diffusion Toolbox，https://mdt-toolbox.readthedocs.io/en/latest_release/index.html，https://github.com/robbert-harms/MDT
+            #### dwilib: https://github.com/jupito/dwilib   for IVIM DKI 
+            #### dwi-utilities: https://github.com/pritesh-mehta/dwi-utilities  fro adc and computated high-b dwi
+   		    
+		   ### DL for deeplearning
+   			pytorch keras tensorflow R kaggle
+            sklearn
+            monai-label+slicer3D

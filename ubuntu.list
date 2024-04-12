@@ -108,9 +108,47 @@
 
 13. ANTs
 	
-
+14. hosts 配置: 20240411
+	https://sites.ipaddress.com/github.global.ssl.fastly.net
 	
+	sudo vim /etc/hosts
+	140.82.114.3      github.com
+	151.101.1.194      github.global.ssl.fastly.net
+	151.101.65.194     github.global.ssl.fastly.net
+	151.101.129.194    github.global.ssl.fastly.net
+	151.101.193.194    github.global.ssl.fastly.net
+	185.199.108.153    assets-cdn.github.com
+	185.199.109.153    assets-cdn.github.com
+	185.199.110.153    assets-cdn.github.com
+	185.199.111.153    assets-cdn.github.com
 
+	sudo systemctl restart NetworkManager
+	resolvectl statistics #查询
+ 	resolvectl flush-caches #刷新缓存
+
+15. ## 下载v2ray-core
+	wget -o /tmp/v2ray-linux-64.zip https://github.com/v2fly/v2ray-core/releases/download/v5.13.0/v2ray-linux-64.zip
+
+	sudo unzip /tmp/v2ray-linux-64.zip -d /usr/local/v2ray-core
+		# 有用户反馈在kali系统系统中，实际使用的geoip.dat和geosite.dat位于/usr/local/share/v2ray/
+		# 所以如果有必要可以拷贝一份dat文件到/usr/local/share/v2ray/
+		sudo mv /usr/local/v2ray-core/*dat /usr/local/share/v2ray/
+
+	# 下载debian安装包, 针对不同的硬件架构以下下载命令稍做调整即可.
+	# 所有安装包可以在这里找到https://github.com/v2rayA/v2rayA/releases/
+	wget -o /tmp/installer_debian_x64_2.2.4.6.deb https://github.com/v2rayA/v2rayA/releases/download/v2.2.4.6/installer_debian_x64_2.2.4.6.deb
+
+	# 安装v2rayA
+	sudo apt install /tmp/installer_debian_x64_2.2.4.6.deb
+
+	3.1. 配置 v2rayA
+	修改/etc/default/v2raya配置文件让 v2raya 使用 v2ray-core
+
+	# vi /etc/default/v2raya
+
+	# 添加配置两行配置
+	V2RAYA_V2RAY_BIN=/usr/local/v2ray-core/v2ray
+	V2RAYA_V2RAY_CONFDIR=/usr/local/v2ray-core
 
 
 1. docker: sudo apt  install docker.io
@@ -220,12 +258,27 @@
 16. qsiprep-docker
 
 17. sudo apt install terminator
+
+	sudo add-apt-repository ppa:gnome-terminator
+	sudo apt update
+	sudo apt install terminator
+
+	安装完成后我们设置其为默认终端，通过快捷键Ctrl+Alt+T即可唤起。 网上有不同的配置方法，推荐使用以下方法：
+	gsettings set org.gnome.desktop.default-applications.terminal exec /usr/bin/terminator
+	gsettings set org.gnome.desktop.default-applications.terminal exec-arg "-x"
+
+	如果想换回默认的设置(感谢 @蒋Andy 帮忙指正)：
+	gsettings reset org.gnome.desktop.default-applications.terminal exec
+	gsettings reset org.gnome.desktop.default-applications.terminal exec-arg
+
 18. sudo apt install mlocate
+
 19. sudo apt install meld: meld
 
 20. Slicer3D:opt, need qt5 sudo apt-get install qt5-default 
 
 21. sudo apt install cmake
+
 22. sudo apt install aria2: 
 	aria2c -i uris.txt
 	aria2c http://example.org/mylinux.iso
@@ -233,123 +286,9 @@
 	aria2c -x2 http://a/f.iso
 	aria2c http://example.org/mylinux.torrent
 	aria2c 'magnet:?xt=urn:btih:248D0A1CD08284299DE78D5C1ED359BB46717D8C'
+
 23. 
 
 
 
 
-ubuntu_vmware: sudo apt-get install build-essential
-	1. sublime
-	2. vscode
-		git配置
-	3. 共享文件夹：/mnt/hgfs
-
-	4. anaconda
-		1) choose python 3.8 version 202105
-		2) base for mri
-			a) fsl: need python2, install in system enviroment; path: home/peng/opt/fsl;done
-			b) ants: home/peng/opt/ants
-			c) afni
-				pyqt4 (should deactivate anaconda when used in afni)
-				sudo apt-get install -y tcsh xfonts-base libssl-dev       \
-                        python-is-python3                 \
-                        python3-matplotlib                \
-                        gsl-bin netpbm gnome-tweak-tool   \
-                        libjpeg62 xvfb xterm vim curl     \
-                        gedit evince eog                  \
-                        libglu1-mesa-dev libglw1-mesa     \
-                        libxm4 build-essential            \
-                        libcurl4-openssl-dev libxml2-dev  \
-                        libgfortran-8-dev libgomp1        \
-                        gnome-terminal nautilus           \
-                        gnome-icon-theme-symbolic         \
-                        firefox xfonts-100dpi             \
-                        libgdal-dev libopenblas-dev       \
-                        libnode-dev libudunits2-dev       \
-                        libgfortran
-				sudo apt install r = 4.1.2
-				sudo ln -s /usr/lib/x86_64-linux-gnu/libgsl.so.23 /usr/lib/x86_64-linux-gnu/libgsl.so.19
-			d) conda install -c mrtrix3 mrtrix3
-			e) dipy == 1.4 pip install dipy
-			f) qsiprep (not supported in python 3.8 due to vtk 8.1.2)
-				Installing qsiprep script to /home/peng/opt/anaconda3/bin
-				creat a new env with python3.7
-			
-			g) freesurfer
-			h. philips gpi (should revise .bashrc for QT5)
-				importError: /home/peng/opt/anaconda3/envs/gpi_env/lib/python3.8/site-packages/PyQt5/QtCore.abi3.so: undefined symbol: _ZdlPvm, version Qt_5
-
-			i) Quantiphyse
-				conda install quantiphyse
-
-				should change qt-version when using quantiphyse
-
-				# QT5
-				# for QT5.12
-				export QTLIB=/usr/lib/x86_64-linux-gnu
-				export LD_LIBRARY_PATH=${QTLIB}:$LD_LIBRARY_PATH
-				# for QT 5.15
-				#export QTLIB=/home/peng/opt/anaconda3/envs/gpi_env/lib
-				#export LD_LIBRARY_PATH=${QTLIB}
-	
-	5. libqt4 (not  needed in afni) and pyqt4 (should deactivate anaconda when used in afni)
-
-		sudo add-apt-repository ppa:rock-core/qt4
-		sudo apt update
-		sudo apt install libqt4-dev
-		cd ~/Downloads
-		wget http://archive.ubuntu.com/ubuntu/pool/universe/q/qt-assistant-compat/libqtassistantclient4_4.6.3-7build1_amd64.deb
-		sudo apt-get install ./libqtassistantclient4_4.6.3-7build1_amd64.deb
-		wget http://archive.ubuntu.com/ubuntu/pool/universe/p/python-qt4/python-qt4_4.12.1+dfsg-2_amd64.deb
-		sudo apt-get install ./python-qt4_4.12.1+dfsg-2_amd64.deb
-		wget http://archive.ubuntu.com/ubuntu/pool/universe/p/python-pyaudio/python-pyaudio_0.2.11-1build2_amd64.deb
-		sudo apt-get install ./python-pyaudio_0.2.11-1build2_amd64.deb
-		sudo apt-get install libcanberra-gtk-module
-
-		sudo add-apt-repository --remove ppa:rock-core/qt4
-		sudo apt remove --autoremove libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4*
-
-
-	6. slicer3D
-		TBD
-	7. MITK-DIFF
-		a. cannot read data
-
-	8. mrtrix3
-		/usr/local/mrtrix3/bin
-
-	9. bart
-		success
-	100. Deeplearning tools
-		setup 
-			conda create -n DL python=3.8
-			conda install pytorch torchvision torchaudio cpuonly -c pytorch
-
-		a. deepbrain: https://github.com/rcruces/deepbrain
-			pip install deepbrain
-		b. pip install antspyx
-
-
- cmake .. \
--DCMAKE_BUILD_TYPE:STRING=Release   \
--DCMAKE_INSTALL_PREFIX:PATH=/home/peng/opt/minc\
--DMT_BUILD_ABC:BOOL=ON   \
--DMT_BUILD_ANTS:BOOL=ON   \
--DMT_BUILD_C3D:BOOL=ON   \
--DMT_BUILD_ELASTIX:BOOL=ON   \
--DMT_BUILD_IM:BOOL=OFF   \
--DMT_BUILD_ITK_TOOLS:BOOL=ON   \
--DMT_BUILD_LITE:BOOL=OFF   \
--DMT_BUILD_SHARED_LIBS:BOOL=ON   \
--DMT_BUILD_VISUAL_TOOLS:BOOL=ON   \
--DMT_USE_OPENMP:BOOL=ON   \
--DUSE_SYSTEM_FFTW3D:BOOL=OFF   \
--DUSE_SYSTEM_FFTW3F:BOOL=OFF   \
--DUSE_SYSTEM_GLUT:BOOL=OFF   \
--DUSE_SYSTEM_GSL:BOOL=OFF   \
--DUSE_SYSTEM_HDF5:BOOL=OFF   \
--DUSE_SYSTEM_ITK:BOOL=OFF   \
--DUSE_SYSTEM_NETCDF:BOOL=OFF   \
--DUSE_SYSTEM_NIFTI:BOOL=OFF   \
--DUSE_SYSTEM_PCRE:BOOL=OFF   \
--DUSE_SYSTEM_ZLIB:BOOL=OFF
