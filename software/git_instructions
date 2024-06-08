@@ -15,7 +15,7 @@
 
 10. git 配置 Github：
     生成SSH的key
-    首先输入命令ssh-keygen -t rsa –C "sunpengwipm@whu.edu.cn"，其中引号里面的是你GitHub注册时候的邮箱，然后它会提示你rsa key的保存地方，直接回车就行，然后还让你输入密码，不想输就一路回车，最后有个public key要注意，这个待会儿会用到。
+    首先输入命令ssh-keygen -t rsa -C "sunpengwipm@whu.edu.cn"，其中引号里面的是你GitHub注册时候的邮箱，然后它会提示你rsa key的保存地方，直接回车就行，然后还让你输入密码，不想输就一路回车，最后有个public key要注意，这个待会儿会用到。
     在git中配置全局的github账号信息：
     git config --global user.name "sunpengmri"
     git config --global user.email "sunpengwipm@whu.edu.cn"
