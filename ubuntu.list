@@ -150,6 +150,10 @@
 	V2RAYA_V2RAY_BIN=/usr/local/v2ray-core/v2ray
 	V2RAYA_V2RAY_CONFDIR=/usr/local/v2ray-core
 
+16. 对整个目录中的文件做dos2unix操作:
+	$ find . -type f -exec dos2unix {} \;
+
+
 
 1. docker: sudo apt  install docker.io
 	sudo docker ps 
