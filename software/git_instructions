@@ -86,8 +86,14 @@
     10.创建远程分支
     git push <远程主机名> <本地分支名>:<远程分支名>
 
+    11.合并分支
+    git merge (branchName)
+    git status
 
+14. 拷贝diff文件
+    git archive -o update.zip HEAD $(git diff HEAD base --name-only)
 
+15. 
 
 
 

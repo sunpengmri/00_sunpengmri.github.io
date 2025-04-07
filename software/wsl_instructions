@@ -1,0 +1,124 @@
+# 一、 WSL 安装说明
+
+## 步骤 1: 启用 WSL
+1. 打开 PowerShell 以管理员身份运行。
+2. 输入以下命令并按回车：
+    ```powershell
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    ```
+
+## 步骤 2: 安装 Linux 内核更新包
+1. 下载并安装最新的 WSL2 Linux 内核更新包：
+    [WSL2 Linux 内核更新包](https://aka.ms/wsl2kernel)
+    ```powershell
+    wsl update
+    ```
+
+## 步骤 3: 设置 WSL 2 作为默认版本
+1. 在 PowerShell 中输入以下命令并按回车：
+    ```powershell
+    wsl --set-default-version 2
+    ```
+
+## 步骤 4: 从 Microsoft Store 安装 Linux 发行版
+1. 打开 Microsoft Store 并搜索你喜欢的 Linux 发行版（例如 Ubuntu22.04）。
+2. 点击“获取”按钮进行安装。
+
+## 步骤 5: 初始化 Linux 发行版
+1. 安装完成后，打开已安装的 Linux 发行版应用。
+2. 按照提示完成初始化设置。
+
+## 其他命令
+- 查看已安装的 WSL 版本：
+  ```powershell
+  wsl -l -v
+  ```
+- 将特定的 Linux 发行版设置为 WSL 2：
+  ```powershell
+  wsl --set-version <发行版名称> 2
+  ```
+- 卸载 Linux 发行版：
+  ```powershell
+  wsl --unregister <发行版名称>
+  ```
+
+完成以上步骤后，你就可以在 Windows 上使用 WSL 运行 Linux 了。
+
+
+# 二、 WSL 使用说明
+
+## 1. WSL 基本环境
+sudo apt update
+sudo apt upgrade
+
+## 2. python3
+sudo ln -sf /usr/bin/python3 /usr/bin/python
+
+## 3. cuda cudnn
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
+sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda-repo-wsl-ubuntu-12-3-local_12.3.1-1_amd64.deb
+sudo dpkg -i cuda-repo-wsl-ubuntu-12-3-local_12.3.1-1_amd64.deb
+sudo cp /var/cuda-repo-wsl-ubuntu-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
+
+sudo apt-get update
+sudo apt-get -y install cuda
+
+export PATH=/usr/local/cuda/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+
+nvcc --version
+
+wget https://developer.download.nvidia.com/compute/cudnn/9.7.1/local_installers/cudnn-local-repo-ubuntu2204-9.7.1_1.0-1_amd64.deb
+sudo dpkg -i cudnn-local-repo-ubuntu2204-9.7.1_1.0-1_amd64.deb
+sudo cp /var/cudnn-local-repo-ubuntu2204-9.7.1/cudnn-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cudnn
+
+sudo apt-get -y install cudnn-cuda-12
+
+## 4. fsl
+python ~/Downloads/fslinstaller.py
+
+## 5. freesurfer
+## bash
+export FREESURFER_HOME=/usr/local/freesurfer
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
+
+
+## 6. afni
+curl -O https://raw.githubusercontent.com/afni/afni/master/src/other_builds/OS_notes.linux_ubuntu_22_64_a_admin.txt
+curl -O https://raw.githubusercontent.com/afni/afni/master/src/other_builds/OS_notes.linux_ubuntu_22_64_b_user.tcsh
+curl -O https://raw.githubusercontent.com/afni/afni/master/src/other_builds/OS_notes.linux_ubuntu_22_64_c_nice.tcsh
+
+sudo bash OS_notes.linux_ubuntu_22_64_a_admin.txt 2>&1 | tee o.ubuntu_22_a.txt
+tcsh OS_notes.linux_ubuntu_22_64_b_user.tcsh 2>&1 | tee o.ubuntu_22_b.txt
+tcsh OS_notes.linux_ubuntu_22_64_c_nice.tcsh 2>&1 | tee o.ubuntu_22_c.txt
+afni_system_check.py -check_allp
+
+# should update R
+
+## 7. ants
+unzip -x ants-2.5.4-ubuntu-22.04-X64-gcc.zip
+
+## 8. mrtrix3 
+conda install mrtrix3::mrtrix3
+
+
+## 9. dcm2niix
+sudo apt-get -y install dcm2niix
+
+
+## 10. mriprep
+conda create -n mriprep python=3.10.16
+
+## 11. lcmodel
+tar xf lcm-??.tar
+./install-lcmodel
+
+## 11. nnunet
+ 
+
