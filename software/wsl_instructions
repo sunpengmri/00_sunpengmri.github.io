@@ -120,5 +120,33 @@ tar xf lcm-??.tar
 ./install-lcmodel
 
 ## 11. nnunet
- 
 
+## 12. deepprep
+  1. install wsl2 
+  2. cuda and cudnn （optional）
+  3. install  windows docker
+  4. test docker （change docker source address）
+    $ docker run -it --rm --gpus all hello-world
+  5.  docker pull pbfslab/deepprep:25.1.0
+ 
+## 12. WSL 系统迁移
+  将 WSL 系统复制到新电脑，可以按照以下步骤进行：
+  在原电脑上备份 WSL 子系统
+  确保 WSL 子系统已关闭：打开命令提示符或 PowerShell，输入 
+  wsl --list --verbose 
+  查看 WSL 子系统状态。若状态为 “Running”，使用命令 wsl --terminate <分布名称> 关闭，例如
+  wsl --terminate Ubuntu-24.04（将 Ubuntu-24.04 替换为实际的子系统名称）。
+  导出 WSL 子系统：使用 wsl --export 命令将 WSL 子系统导出为 .tar 文件。例如，将名为 “Ubuntu-24.04” 的子系统导出到 D 盘根目录，命令为 
+  wsl --export Ubuntu-24.04 D:\Ubuntu-24.04.tar。
+  （可选）注销原有子系统：如果不再需要原电脑上的 WSL 子系统，可使用 wsl --unregister <分布名称> 命令注销，如 wsl --unregister Ubuntu-24.04。但此步骤非必需，若不执行不会影响新电脑的导入使用，只是原电脑上仍会保留该子系统的相关信息占用一定磁盘空间。
+  在目标电脑上恢复 WSL 子系统
+  确保目标电脑已安装 WSL：
+  若目标电脑是 Windows 10 或 11，可通过命令启用 WSL 功能。以管理员身份打开命令提示符或 PowerShell，输入 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart。
+  若需要使用 WSL 2，还需启用虚拟机平台功能，命令为 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart。执行上述命令后，可能需要重启电脑以完成安装。
+  传输备份文件：将原电脑上备份的 .tar 文件（如 D:\Ubuntu-24.04.tar），通过 USB 驱动器、网络共享、云存储等方式复制到目标电脑的指定路径。
+  导入 WSL 子系统：在目标电脑上，以管理员身份打开命令提示符或 PowerShell，使用 wsl --import 命令导入 WSL 子系统。例如，将备份的 Ubuntu-24.04 子系统导入到目标电脑的 D:\WSL\Ubuntu-24.04 目录，命令为 wsl --import Ubuntu-24.04 D:\WSL\Ubuntu-24.04 D:\Ubuntu-24.04.tar。其中，第一个 Ubuntu-24.04 是导入后的子系统名称（可自定义，但不能与目标电脑已有的 WSL 子系统名称冲突），D:\WSL\Ubuntu-24.04 是子系统在目标电脑上的安装路径，D:\Ubuntu-24.04.tar 是备份文件的路径。
+  设置默认用户（可选）：导入完成后，若默认登录用户不是期望的用户，可能需要设置默认用户。可通过以下方法设置：
+  创建或编辑 /etc/wsl.conf 文件（使用文本编辑器，如以管理员身份打开 Notepad 并编辑该文件，若文件不存在则创建），添加或修改内容为 [user] default=<你的用户名>（将 <你的用户名> 替换为实际用户名）。然后退出 WSL 子系统，在命令提示符或 PowerShell 中执行 wsl --terminate <分布名称>，再重新启动 WSL 子系统，即可使用设置的默认用户登录。
+  或者在登录到 WSL 子系统后（默认为 root 用户时），使用 su <用户名> 命令切换到正确的用户（将 <用户名> 替换为实际用户名），但这种方式每次登录可能都需要手动切换，不如修改 wsl.conf 文件设置默认用户方便。
+  （可选）设置为默认版本：如果目标电脑上安装了多个 WSL 版本，且希望将新导入的子系统设置为默认版本，可以运行 wsl --set-default <分布名称> 命令（将 <分布名称> 替换为新导入的子系统名称）。
+  完成上述步骤后，可以通过命令 wsl 或在开始菜单中找到对应的 WSL 子系统应用程序启动 WSL 子系统，并验证文件系统、配置文件和已安装的软件等是否与原电脑一致，以确认迁移成功。
